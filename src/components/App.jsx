@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
+import { ContactList } from './ContactList/ContactList';
+import css from '../components/App.module.css';
 
 export class App extends Component {
   state = {
@@ -15,13 +17,13 @@ export class App extends Component {
 
   render() {
     return (
-      <div className="styleApp">
+      <div className={css.styleApp}>
         <h1>Phonebook</h1>
         <ContactForm />
 
         <h2>Contacts</h2>
-        {/* <Filter ... />
-  <ContactList ... /> */}
+        <ContactList />
+        {/* /* <Filter ... /> */}
       </div>
     );
   }

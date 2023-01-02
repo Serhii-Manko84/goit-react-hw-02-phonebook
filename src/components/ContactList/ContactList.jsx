@@ -1,15 +1,21 @@
 import PropTypes from 'prop-types';
+import { Contact } from '../Contact/Contact';
 import css from '../ContactList/ContactList.module.css';
-import { Contact } from 'components/Contact/Contact';
 
-export function ContactList({ contacts }) {
-  console.log(contacts);
+export function ContactList({ contacts, onDeleteContact }) {
   return (
     <ul>
       {contacts.map(({ id, name, number }) => {
-        <li className={css.item} key={id}>
-          <Contact name={name} number={number} contactID={id} />
-        </li>;
+        return (
+          <li className={css.item} key={id}>
+            <Contact
+              name={name}
+              number={number}
+              onDeleteContact={onDeleteContact}
+              contactID={id}
+            />
+          </li>
+        );
       })}
     </ul>
   );
@@ -18,9 +24,10 @@ export function ContactList({ contacts }) {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      contactID: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
